@@ -32,6 +32,10 @@ const Plant = db.define('plant', {
     validate: {
       notEmpty: true
     }
+  },
+  image: {
+    type: Sequelize.STRING,
+    allowNull: false
   }
 })
 
