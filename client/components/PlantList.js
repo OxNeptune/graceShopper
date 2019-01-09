@@ -1,64 +1,60 @@
 import React, {Component} from 'react'
-// import Product from './Product';
-// import {connect} from 'react-redux'
-// import { fetchproductes, removeproduct } from '../reducers/productes';
+import {connect} from 'react-redux'
+import {getPlantsThunk} from '../store/plants'
 
-export class ProductList extends Component {
+class PlantList extends Component {
   constructor(props) {
     super(props)
-    this.showProduct = this.showProduct.bind(this)
+    // this.showPlant = this.showPlant.bind(this)
   }
 
-  // componentDidMount() {
-  //   this.props.loadProducts()
-  // }
+  componentDidMount() {
+    this.props.loadPlants()
+  }
 
-  // showProduct(id) {
-  //   this.props.history.push(`/product/${id}`) // changes my url bar
+  // showplant(id) {
+  //   this.props.history.push(`/plant/${id}`) // changes my url bar
   // }
 
   render() {
-    const productList = this.props.products
+    const plantList = this.props.plants
 
     return (
-      <div className="product-list-wrapper">
-        <h2 id="product-list-title">Product List</h2>
-        <div className="product-list">
-          {productList.map(product => (
-            <Product
-              product={product}
-              key={product.id}
-              showproduct={this.showproduct}
-              removeproduct={this.props.removeproduct}
-            />
+      <div className="plant-list-wrapper">
+        <h2 id="plant-list-title">Plant List</h2>
+        <div className="plant-list">
+          {plantList.map(plant => (
+            <ul key={plant.id}>
+              <li>{plant}</li>
+            </ul>
           ))}
         </div>
-        <button
+        {/* <button
           className="add-button"
           type="button"
           onClick={() => {
-            this.props.history.push('/products/add')
+            this.props.history.push('/plants/add')
           }}
         >
-          Add product
-        </button>
+          Add plant
+        </button> */}
       </div>
     )
   }
 }
 
-function mapStateToProps(state) {
+function mapState(state) {
   return {
-    products: state.products
+    plants: state.plants
   }
 }
 
-function mapDispatchToProps(dispatch) {
+function mapDispatch(dispatch) {
   return {
-    loadProducts: () => dispatch(fetchProductes()),
-    removeProduct: productId => dispatch(removeProduct(productId))
-    // submitproduct: product => dispatch(submitproduct(product))
+    loadPlants: () => dispatch(getPlantsThunk())
+    // removePlant: plantId => dispatch(removePlant(plantId))
+    // submitPlant: plant => dispatch(submitPlant(plant))
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(ProductList)
+export default connect(mapState, mapDispatch)(PlantList)
