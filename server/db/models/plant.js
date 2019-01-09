@@ -20,7 +20,7 @@ const Plant = db.define('plant', {
     type: Sequelize.INTEGER,
     allowNull: false,
     validate: {
-      notEmpty: true
+      min: 10
     }
   },
   size: {
@@ -33,7 +33,7 @@ const Plant = db.define('plant', {
       notEmpty: true
     }
   },
-  image: {
+  imageURI: {
     type: Sequelize.STRING,
     allowNull: false
   }
