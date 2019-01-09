@@ -30,5 +30,14 @@ describe('Plant routes', () => {
       expect(res.body).to.be.an('array')
       expect(res.body[0].name).to.be.equal('Peace Lily')
     })
+
+    it('GET /api/plants/:id', async () => {
+      const res = await request(app)
+        .get('/api/plants/1')
+        .expect(200)
+
+      expect(res.body).to.be.an('object')
+      expect(res.body.name).to.be.equal('Peace Lily')
+    })
   }) // end describe('/api/users')
 }) // end describe('User routes')
