@@ -11,14 +11,6 @@ export const gotPlants = plants => {
   }
 }
 
-// thunk creators
-// export function getPlantsThunk() {
-//   return async function thunk(dispatch) {
-//     const response = await axios.get('/api/plants')
-//     dispatch(gotPlants(response))
-//   }
-// }
-
 export const getPlantsThunk = () => async dispatch => {
   try {
     const response = await axios.get('/api/plants')
