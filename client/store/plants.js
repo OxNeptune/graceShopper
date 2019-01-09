@@ -22,7 +22,7 @@ export const gotPlants = plants => {
 export const getPlantsThunk = () => async dispatch => {
   try {
     const response = await axios.get('/api/plants')
-    dispatch(gotPlants(response))
+    dispatch(gotPlants(response.data))
   } catch (err) {
     console.error(err)
   }

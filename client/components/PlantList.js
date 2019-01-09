@@ -18,6 +18,7 @@ class PlantList extends Component {
 
   render() {
     const plantList = this.props.plants
+    console.log('here is the plantList Array:', plantList)
 
     return (
       <div className="plant-list-wrapper">
@@ -25,7 +26,10 @@ class PlantList extends Component {
         <div className="plant-list">
           {plantList.map(plant => (
             <ul key={plant.id}>
-              <li>{plant}</li>
+              <li>
+                <img src={plant.image} />
+                {plant.name} ${plant.price}
+              </li>
             </ul>
           ))}
         </div>
