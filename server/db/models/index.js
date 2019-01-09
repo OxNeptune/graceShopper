@@ -1,8 +1,12 @@
 const User = require('./user')
 const Plant = require('./plant')
+const Order = require('./order')
 
 Plant.belongsTo(User)
 User.hasMany(Plant)
+
+User.hasMany(Order)
+
 /**
  * If we had any associations to make, this would be a great place to put them!
  * ex. if we had another model called BlogPost, we might say:
@@ -18,5 +22,6 @@ User.hasMany(Plant)
  */
 module.exports = {
   User,
-  Plant
+  Plant,
+  Order
 }
