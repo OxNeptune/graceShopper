@@ -18,7 +18,7 @@ describe('Plant routes', () => {
         size: 'small',
         description:
           'The Peace Lily is a popular indoor houseplant. It lives best in shade and needs little sunlight to thrive, and is watered approximately once a week. The soil is best left moist but only needs watering if the soil is dry.',
-        image: '/public/images/peaceLily.jpg'
+        imageURI: '/public/images/peaceLily.jpg'
       })
     })
 
