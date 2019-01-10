@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {getPlantsThunk} from '../store/plants'
+import {Link} from 'react-router-dom'
 
 class PlantList extends Component {
   constructor(props) {
@@ -25,7 +26,9 @@ class PlantList extends Component {
         <div className="plant-list">
           {plantList.map(plant => (
             <div key={plant.id}>
-              <img src={plant.imageURI} />
+              <Link to={`/plants/${plant.id}`}>
+                <img src={plant.imageURI} />
+              </Link>
               {plant.name} ${plant.price}
             </div>
           ))}
@@ -46,7 +49,7 @@ class PlantList extends Component {
 
 function mapState(state) {
   return {
-    plants: state.plants
+    plants: state.plants.plants
   }
 }
 
