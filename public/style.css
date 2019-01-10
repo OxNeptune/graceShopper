@@ -19,3 +19,8 @@ form div {
   margin: 1em;
   display: inline-block;
 }
+
+#cart-icon {
+  height: 24px;
+  width: 24px;
+}
