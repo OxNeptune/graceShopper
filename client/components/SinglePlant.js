@@ -3,10 +3,6 @@ import {connect} from 'react-redux'
 import {getSinglePlantThunk} from '../store/plants'
 
 class SinglePlant extends Component {
-  constructor(props) {
-    super(props)
-  }
-
   componentDidMount() {
     this.props.loadPlant(this.props.match.params.id)
   }
@@ -16,28 +12,32 @@ class SinglePlant extends Component {
 
     return (
       <div className="single-plant-wrapper">
-        <img src={plant.imageUrl} />
+        <img src={plant.imageURI} />
         <h2>{plant.name}</h2>
-        <h4>{plant.price}</h4>
+        <h4>${plant.price}.00</h4>
         <p>{plant.description}</p>
-        <select name="Qty">
-          <option value="1">1</option>
-          <option value="2">2</option>
-          <option value="3">3</option>
-        </select>
-        <select name="Size">
-          <option value="small">small</option>
-          <option value="medium">medium</option>
-          <option value="large">large</option>
-        </select>
-        <button type="submit">Add to Cart</button>
+        <span>
+          Qty:
+          <select name="Qty">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+          </select>
+          Size:
+          <select name="Size">
+            <option value="small">small</option>
+            <option value="medium">medium</option>
+            <option value="large">large</option>
+          </select>
+          <button type="submit">Add to Cart</button>
+        </span>
       </div>
     )
   }
 }
 
 const mapState = state => ({
-  plant: state.plant
+  plant: state.plants.singlePlant
 })
 
 const mapDispatch = dispatch => ({

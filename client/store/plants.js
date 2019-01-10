@@ -48,7 +48,7 @@ export default (state = initialState, action) => {
     case GOT_PLANTS:
       return {...state, plants: action.plants}
     case GOT_SINGLE_PLANT:
-      return {...state, plant: action.plant}
+      return {...state, singlePlant: action.plant}
     default:
       return state
   }
