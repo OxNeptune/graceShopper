@@ -2,7 +2,14 @@ const Sequelize = require('sequelize')
 const db = require('../db')
 
 const Address = db.define('address', {
-  type: {
+  firstName: {
+    type: Sequelize.STRING,
+    allowNull: false,
+    validate: {
+      notEmpty: true
+    }
+  },
+  lastName: {
     type: Sequelize.STRING,
     allowNull: false,
     validate: {
@@ -17,11 +24,7 @@ const Address = db.define('address', {
     }
   },
   secondLine: {
-    type: Sequelize.STRING,
-    allowNull: false,
-    validate: {
-      notEmpty: true
-    }
+    type: Sequelize.STRING
   },
   city: {
     type: Sequelize.STRING,
