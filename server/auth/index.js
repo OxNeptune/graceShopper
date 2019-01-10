@@ -1,5 +1,7 @@
 const router = require('express').Router()
 const User = require('../db/models/user')
+const crypto = require('crypto')
+
 module.exports = router
 
 router.post('/login', async (req, res, next) => {
@@ -21,7 +23,20 @@ router.post('/login', async (req, res, next) => {
 
 router.post('/signup', async (req, res, next) => {
   try {
-    const user = await User.create(req.body)
+    const user = await User.create({
+      email: req.body.email,
+      password: req.body.password
+    })
+
+    const blank = crypto
+      .createHash('RSA-SHA256')
+      .update('')
+      .update(user.salt())
+      .digest('hex')
+
+    if (user.password() === blank) {
+      res.status(401).send("Password can't be blank")
+    }
     req.login(user, err => (err ? next(err) : res.json(user)))
   } catch (err) {
     if (err.name === 'SequelizeUniqueConstraintError') {
