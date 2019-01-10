@@ -4,7 +4,7 @@ const Order = require('./order')
 const Cart = require('./cart')
 const Address = require('./address')
 const CartItem = require('./cartItem')
-const OrderItem = require('./OrderItem')
+const OrderItem = require('./orderItem')
 
 //Creates Association between USer and Order where an Order has one User (userid) and the User can have
 // many orders
