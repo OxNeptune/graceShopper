@@ -42,5 +42,9 @@ Order.belongsToMany(Plant, {through: OrderItem})
 module.exports = {
   User,
   Plant,
-  Order
+  Order,
+  Cart,
+  CartItem,
+  OrderItem,
+  Address
 }

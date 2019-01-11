@@ -1,5 +1,6 @@
 const router = require('express').Router()
 const User = require('../db/models/user')
+const Cart = require('../db/models/cart')
 const crypto = require('crypto')
 
 module.exports = router
@@ -52,6 +53,7 @@ router.post('/signup', async (req, res, next) => {
       res.status(401).send("Password can't be blank")
     }
     req.session.userid = user.id
+    await Cart.create({userId: user.id})
     req.login(user, err => (err ? next(err) : res.json(user)))
   } catch (err) {
     if (err.name === 'SequelizeUniqueConstraintError') {
