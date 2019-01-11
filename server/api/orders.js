@@ -1,5 +1,5 @@
 const router = require('express').Router()
-const {Order, OrderItem} = require('../db/models')
+const {Order, Plant} = require('../db/models')
 module.exports = router
 
 // get ALL
@@ -7,11 +7,11 @@ router.get('/', async (req, res, next) => {
   try {
     const orders = await Order.findAll({
       // where: {
-      //   userId: req.sessions.userId
+      //   userId: req.session.userId
       // },
       include: [
         {
-          model: OrderItem
+          model: Plant
         }
       ]
     })
