@@ -22,7 +22,8 @@ class PlantList extends Component {
 
     return (
       <div className="plant-list-wrapper">
-        <h2 id="plant-list-title">Plant List</h2>
+        <img id="landing-plants" src="/images/landing-plants.jpg" />
+        <h2 id="plant-list-title">All Plants</h2>
         <div className="plant-list">
           {plantList.map(plant => (
             <div key={plant.id}>
