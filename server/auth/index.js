@@ -71,7 +71,6 @@ router.post('/logout', (req, res) => {
 })
 
 router.get('/me', (req, res) => {
-  console.log(req.session.userid, 'SESSION')
   res.json(req.user)
 })
 
