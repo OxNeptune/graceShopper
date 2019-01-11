@@ -14,6 +14,7 @@ router.post('/login', async (req, res, next) => {
       console.log('Incorrect password for user:', req.body.email)
       res.status(401).send('Wrong username and/or password')
     } else {
+      req.session.userid = user.id
       req.login(user, err => (err ? next(err) : res.json(user)))
     }
   } catch (err) {
@@ -24,6 +25,7 @@ router.post('/login', async (req, res, next) => {
 router.post('/signup', async (req, res, next) => {
   try {
     const reqBody = req.body
+
     //if the user is able to send any blank names or email to backend, will send back message
     if (
       reqBody.firstName === '' ||
@@ -39,6 +41,7 @@ router.post('/signup', async (req, res, next) => {
       firstName: reqBody.firstName,
       lastName: reqBody.lastName
     })
+
     const blank = crypto
       .createHash('RSA-SHA256')
       .update('')
@@ -48,7 +51,7 @@ router.post('/signup', async (req, res, next) => {
     if (user.password() === blank) {
       res.status(401).send("Password can't be blank")
     }
-
+    req.session.userid = user.id
     req.login(user, err => (err ? next(err) : res.json(user)))
   } catch (err) {
     if (err.name === 'SequelizeUniqueConstraintError') {
