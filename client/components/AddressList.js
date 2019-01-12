@@ -1,9 +1,9 @@
+import React, {Component} from 'react'
+import {connect} from 'react-redux'
 import {SingleAddress} from './SingleAddress'
 import {getUserProfileThunk} from '../store/user'
-import {connect} from 'react-redux'
-import React from 'react'
 
-class AddressList extends React.Component {
+class AddressList extends Component {
   componentDidMount() {
     this.props.loadUser(this.props.id)
   }
@@ -13,7 +13,7 @@ class AddressList extends React.Component {
     return (
       <div>
         <h4>Addresses</h4>
-        {addresses.length > 0 ? (
+        {/* {addresses.length > 0 ? (
           <div>
             {addresses.map(address => {
               return <SingleAddress key={address.id} address={address} />
@@ -23,9 +23,9 @@ class AddressList extends React.Component {
           <div>
             <p>No available addresses</p>
           </div>
-        )}
+        )} */}
         <div>
-          <p>Add an Address</p>
+          <p>Add New Address</p>
           <form>
             <div>
               <label htmlFor="firstName">

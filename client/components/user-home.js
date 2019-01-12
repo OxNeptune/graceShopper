@@ -1,6 +1,8 @@
 import React, {Component} from 'react'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
+import AddressList from './AddressList'
+// import SingleAddress from './SingleAddress'
 // import orders from '../store/orders'
 
 /**
@@ -21,7 +23,7 @@ class UserHome extends Component {
 
     return (
       <div>
-        <h2>Welcome, {firstName}</h2>
+        <h2>Welcome dear, {firstName}</h2>
         <div className="user-home-features">
           <button type="button" onClick={this.showOrders}>
             Orders
@@ -40,6 +42,9 @@ class UserHome extends Component {
           <button type="button">Your Addresses</button>
           <button type="button">Login/Security</button>
           <button type="button">Payment Options</button>
+        </div>
+        <div>
+          <AddressList />
         </div>
       </div>
     )

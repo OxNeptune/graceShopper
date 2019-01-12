@@ -3,7 +3,7 @@ import React from 'react'
 /**
  * COMPONENT
  */
-export const SingleAddress = props => {
+const SingleAddress = props => {
   const address = props.address
 
   return (
@@ -21,3 +21,5 @@ export const SingleAddress = props => {
     </div>
   )
 }
+
+export default SingleAddress
