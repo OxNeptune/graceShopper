@@ -23,7 +23,7 @@ class UserHome extends Component {
 
     return (
       <div>
-        <h2>Welcome dear, {firstName}</h2>
+        <h2>Welcome, {firstName}</h2>
         <div className="user-home-features">
           <button type="button" onClick={this.showOrders}>
             Orders

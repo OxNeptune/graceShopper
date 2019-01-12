@@ -1,9 +1,7 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-import {SingleAddress} from './SingleAddress'
 import {getUserProfileThunk, addAddress, removeAddress} from '../store/user'
-import {connect} from 'react-redux'
-import React from 'react'
+import SingleAddress from './SingleAddress'
 
 class AddressList extends Component {
   componentDidMount() {
@@ -15,7 +13,7 @@ class AddressList extends Component {
     return (
       <div>
         <h4>Addresses</h4>
-        {/* {addresses.length > 0 ? (
+        {addresses.length > 0 ? (
           <div>
             {addresses.map(address => {
               return (
@@ -31,7 +29,7 @@ class AddressList extends Component {
           <div>
             <p>No available addresses</p>
           </div>
-        )} */}
+        )}
         <div>
           <p>Add an Address</p>
           <form onSubmit={this.props.handleSubmit}>
