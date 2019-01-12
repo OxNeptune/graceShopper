@@ -1,7 +1,9 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {SingleAddress} from './SingleAddress'
-import {getUserProfileThunk} from '../store/user'
+import {getUserProfileThunk, addAddress, removeAddress} from '../store/user'
+import {connect} from 'react-redux'
+import React from 'react'
 
 class AddressList extends Component {
   componentDidMount() {
@@ -16,7 +18,13 @@ class AddressList extends Component {
         {/* {addresses.length > 0 ? (
           <div>
             {addresses.map(address => {
-              return <SingleAddress key={address.id} address={address} />
+              return (
+                <SingleAddress
+                  key={address.id}
+                  address={address}
+                  removeAddress={this.props.removeAddress}
+                />
+              )
             })}
           </div>
         ) : (
@@ -25,8 +33,8 @@ class AddressList extends Component {
           </div>
         )} */}
         <div>
-          <p>Add New Address</p>
-          <form>
+          <p>Add an Address</p>
+          <form onSubmit={this.props.handleSubmit}>
             <div>
               <label htmlFor="firstName">
                 <small>Receipient First Name</small>
@@ -50,7 +58,7 @@ class AddressList extends Component {
               <label htmlFor="secondLine">
                 <small>Apt/Suite</small>
               </label>
-              <input name="secondLine" type="text" required />
+              <input name="secondLine" type="text" />
             </div>
             <div>
               <label htmlFor="city">
@@ -94,9 +102,32 @@ const mapState = state => {
 
 function mapDispatch(dispatch) {
   return {
-    loadUser: userId => dispatch(getUserProfileThunk(userId))
-    // removePlant: plantId => dispatch(removePlant(plantId))
-    // submitPlant: plant => dispatch(submitPlant(plant))
+    loadUser: userId => dispatch(getUserProfileThunk(userId)),
+    handleSubmit(evt) {
+      evt.preventDefault()
+
+      const firstName = evt.target.firstName.value
+      const lastName = evt.target.lastName.value
+      const firstLine = evt.target.firstLine.value
+      const secondLine = evt.target.secondLine.value
+      const city = evt.target.city.value
+      const state = evt.target.state.value
+      const zip = evt.target.zip.value
+
+      const address = {
+        firstName,
+        lastName,
+        firstLine,
+        secondLine,
+        city,
+        state,
+        zip
+      }
+      dispatch(addAddress(address))
+    },
+    removeAddress(addressId) {
+      dispatch(removeAddress(addressId))
+    }
   }
 }
 
