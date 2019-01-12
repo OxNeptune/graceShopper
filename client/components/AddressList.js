@@ -3,77 +3,82 @@ import {getUserProfileThunk} from '../store/user'
 import {connect} from 'react-redux'
 import React from 'react'
 
-const AddressList = props => {
-  const addresses = props
-  console.log('hi', props)
-  return (
-    <div>
-      <h4>Addresses</h4>
-      {addresses.length > 0 ? (
-        <div>
-          {addresses.map(address => {
-            return <SingleAddress key={address.id} props={address} />
-          })}
-        </div>
-      ) : (
-        <div>
-          <p>No available addresses</p>
-        </div>
-      )}
+class AddressList extends React.Component {
+  componentDidMount() {
+    this.props.loadUser(this.props.id)
+  }
+  render() {
+    const addresses = this.props.addresses
+
+    return (
       <div>
-        <p>Add an Address</p>
-        <form>
+        <h4>Addresses</h4>
+        {addresses.length > 0 ? (
           <div>
-            <label htmlFor="firstName">
-              <small>Receipient First Name</small>
-            </label>
-            <input name="firstName" type="text" required />
+            {addresses.map(address => {
+              return <SingleAddress key={address.id} address={address} />
+            })}
           </div>
+        ) : (
           <div>
-            <label htmlFor="lastName">
-              <small>Recipeient Last Name</small>
-            </label>
-            <input name="lastName" type="text" required />
+            <p>No available addresses</p>
           </div>
-          <div>
-            <label htmlFor="firstLine">
-              <small>Street</small>
-            </label>
-            <input name="firstLine" type="text" required />
-          </div>
+        )}
+        <div>
+          <p>Add an Address</p>
+          <form>
+            <div>
+              <label htmlFor="firstName">
+                <small>Receipient First Name</small>
+              </label>
+              <input name="firstName" type="text" required />
+            </div>
+            <div>
+              <label htmlFor="lastName">
+                <small>Recipeient Last Name</small>
+              </label>
+              <input name="lastName" type="text" required />
+            </div>
+            <div>
+              <label htmlFor="firstLine">
+                <small>Street</small>
+              </label>
+              <input name="firstLine" type="text" required />
+            </div>
 
-          <div>
-            <label htmlFor="secondLine">
-              <small>Apt/Suite</small>
-            </label>
-            <input name="secondLine" type="text" required />
-          </div>
-          <div>
-            <label htmlFor="city">
-              <small>City</small>
-            </label>
-            <input name="city" type="text" required />
-          </div>
-          <div>
-            <label htmlFor="state">
-              <small>State</small>
-            </label>
-            <input name="state" type="text" required />
-          </div>
-          <div>
-            <label htmlFor="zip">
-              <small>Zip Code</small>
-            </label>
-            <input name="zip" type="text" required />
-          </div>
+            <div>
+              <label htmlFor="secondLine">
+                <small>Apt/Suite</small>
+              </label>
+              <input name="secondLine" type="text" required />
+            </div>
+            <div>
+              <label htmlFor="city">
+                <small>City</small>
+              </label>
+              <input name="city" type="text" required />
+            </div>
+            <div>
+              <label htmlFor="state">
+                <small>State</small>
+              </label>
+              <input name="state" type="text" required />
+            </div>
+            <div>
+              <label htmlFor="zip">
+                <small>Zip Code</small>
+              </label>
+              <input name="zip" type="text" required />
+            </div>
 
-          <div>
-            <button type="submit">Add Address</button>
-          </div>
-        </form>
+            <div>
+              <button type="submit">Add Address</button>
+            </div>
+          </form>
+        </div>
       </div>
-    </div>
-  )
+    )
+  }
 }
 
 /**
