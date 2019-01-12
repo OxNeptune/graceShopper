@@ -23,7 +23,7 @@ Order.belongsTo(User)
 Plant.belongsToMany(Cart, {through: CartItem})
 Cart.belongsToMany(Plant, {through: CartItem})
 
-//M:M Association between order and plant through the CartItem Model
+//M:M Association between order and plant through the OrderItem Model
 Plant.belongsToMany(Order, {through: OrderItem})
 Order.belongsToMany(Plant, {through: OrderItem})
 /**
@@ -42,5 +42,9 @@ Order.belongsToMany(Plant, {through: OrderItem})
 module.exports = {
   User,
   Plant,
-  Order
+  Order,
+  Cart,
+  CartItem,
+  OrderItem,
+  Address
 }
