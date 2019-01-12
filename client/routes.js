@@ -4,6 +4,7 @@ import {withRouter, Route, Switch, Redirect} from 'react-router-dom'
 import PropTypes from 'prop-types'
 import {Login, Signup, UserHome, PlantList, SinglePlant} from './components'
 import {me} from './store'
+import AddressList from './components/AddressList'
 
 /**
  * COMPONENT
@@ -29,6 +30,7 @@ class Routes extends Component {
           <Switch>
             {/* Routes placed here are only available after logging in */}
             <Route path="/home" component={UserHome} />
+            <Route path="/addresses" component={AddressList} />
           </Switch>
         )}
         {/* Displays our Login component as a fallback */}
