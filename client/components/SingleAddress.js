@@ -10,10 +10,16 @@ export const SingleAddress = props => {
     <div>
       <div>
         <p>
+          <button
+            type="button"
+            onClick={() => {
+              props.removeAddress(address.id)
+            }}
+          >
+            X
+          </button>
           Recipient: {address.firstName} {address.lastName} <br />
-          {address.firstLine}
-          <br />
-          {address.secondLine}
+          {address.firstLine} {address.secondLine}
           <br />
           {address.city}, {address.state} {address.zip}
         </p>
