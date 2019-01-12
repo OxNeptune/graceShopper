@@ -22,7 +22,7 @@ router.get('/', async (req, res, next) => {
     })
     res.json(cartWithPlants)
   } catch (error) {
-    res.send(error)
+    next(error)
   }
 })
 
@@ -40,6 +40,21 @@ router.delete('/:id', async (req, res, next) => {
     // const deletedPlant = await
     // delete the plant with the id given to us through params
   } catch (error) {
-    res.send(error)
+    next(error)
+  }
+})
+
+router.post('/', async (req, res, next) => {
+  const {plantId, quantity, total} = req.body
+  console.log(req.session)
+  try {
+    const cartItem = await CartItem.create({
+      plantId,
+      quantity,
+      total
+    })
+    res.send(cartItem)
+  } catch (err) {
+    next(err)
   }
 })
