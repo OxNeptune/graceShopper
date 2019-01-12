@@ -4,11 +4,11 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {getCartThunk} from '../store/userCart'
-import {Cart} from '.'
+import {Cart} from './Cart'
 
 export class UserCart extends Component {
   render() {
-    const cart = this.props.cart.plants
+    const cart = this.props.cart
 
     return (
       <div className="user-cart-wrapper">
