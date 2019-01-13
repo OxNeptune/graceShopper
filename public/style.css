@@ -50,6 +50,8 @@ header {
   display: flex;
   justify-content: space-between;
   padding: 6px 50px;
+  flex: 1 0 100%;
+  flex-wrap: wrap;
 }
 
 .nav-link {
@@ -58,7 +60,7 @@ header {
 
 .nav-link h1 {
   font-size: 26px;
-  color: #63a083;
+  color: #48735d;
 }
 
 #cart-icon {
@@ -81,20 +83,25 @@ header {
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   grid-auto-rows: 250px;
   grid-auto-flow: dense;
-  grid-row-gap: 6em;
+  grid-row-gap: 8em;
   grid-column-gap: 3em;
   padding: 10px 8%;
 }
 
 .plant-card h3 {
-  color: #63a083;
+  color: #48735d;
   font-size: 26px;
 }
 
 .card-info {
   display: flex;
   justify-content: space-between;
+}
+
+.card-info h3 {
   padding-top: 10px;
+  border-bottom: 1px #aaa solid;
+  padding-bottom: 4px;
 }
 
 .plant-card img {
@@ -123,10 +130,18 @@ header {
   color: white;
 }
 
+@media only screen and (max-width: 600px) {
+  .banner h1 {
+    font-size: 46px;
+  }
+}
+
 .banner h4 {
   padding-top: 20px;
   font-size: 24px;
   color: #f8aac9;
+  font-family: monospace;
+  font-weight: 100;
 }
 
 .banner-text {
@@ -137,4 +152,68 @@ header {
   display: block;
   object-fit: cover;
   width: 100%;
+}
+
+/* single plant view */
+.single-plant-wrapper {
+  display: grid;
+  /* grid-template-columns: 1fr 1fr; */
+  grid-template-columns: repeat(auto-fit, minmax(330px, 1fr));
+  margin: 0 30px 30px 30px;
+  border: black 1px solid;
+}
+
+.single-plant-img img {
+  display: block;
+  object-fit: cover;
+  width: 100%;
+  padding: 20px;
+  /* min-height: 300px; */
+}
+
+.single-plant-info {
+  padding: 15%;
+}
+
+.single-plant-info div {
+  padding-right: 10px;
+}
+
+.plant-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding-bottom: 2px;
+  margin-bottom: 10px;
+}
+
+.plant-head h3 {
+  padding-bottom: 2px;
+  margin-bottom: 10px;
+  padding: 5px;
+  background: #a9cbbb;
+  background-position: 50px 150px;
+}
+
+.plant-head h1 {
+  font-size: 46px;
+  text-decoration: underline;
+}
+
+.submit-button {
+  outline: none;
+  height: 40px;
+  text-align: center;
+  width: 130px;
+  border-radius: 40px;
+  background: #fff;
+  border: 2px solid #a9cbbb;
+  /* color: #a9cbbb; */
+  letter-spacing: 1px;
+  text-shadow: 0;
+}
+
+.submit-button:hover {
+  color: white;
+  background: #a9cbbb;
 }

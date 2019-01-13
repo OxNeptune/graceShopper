@@ -23,10 +23,8 @@ class PlantList extends Component {
     return (
       <div className="plant-list-wrapper">
         <div className="banner">
-          {/* <img id="banner-img" src="/images/banner02.jpg" /> */}
           <div className="banner-text">
-            <h1>Start Your Own Personal Jungle</h1>
-            {/* <h4>Shop now below</h4> */}
+            <h1>Turn Over A New Leaf in 2019</h1>
           </div>
         </div>
         <h2 id="plant-list-title">All Plants</h2>
