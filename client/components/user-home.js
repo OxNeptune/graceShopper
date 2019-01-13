@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
+// import {Link, withRouter} from 'react-router-dom'
 import AddressList from './AddressList'
 // import SingleAddress from './SingleAddress'
 // import orders from '../store/orders'
@@ -11,23 +12,31 @@ import AddressList from './AddressList'
 class UserHome extends Component {
   constructor(props) {
     super(props)
-    this.showOrders = this.showOrders.bind(this)
+    this.state = {
+      showAdresses: false,
+      showOrders: false,
+      showInfo: false,
+      showPaymentOptions: false
+    }
+    this.toggleAddresses = this.toggleAddresses.bind(this)
+    // this.toggleOrders = this.toggleOrders.bind(this)
   }
 
-  showOrders() {
-    console.log('Many orders, yay, I bought a monkey!')
+  toggleAddresses() {
+    this.setState({
+      showAdresses: !this.state.showAdresses
+    })
   }
 
   render() {
     const {firstName} = this.props
-    const recipient = this.props.address[0]
-    console.log('This is the recipient', recipient)
+    console.log('User-home props', this.props)
 
     return (
       <div>
         <h2>Welcome, {firstName}</h2>
         <div className="user-home-features">
-          <button type="button" onClick={this.showOrders}>
+          <button type="button" onClick={this.toggleOrders}>
             Orders
             <div>
               {/* {orders.length ? (
@@ -41,16 +50,13 @@ class UserHome extends Component {
               )} */}
             </div>
           </button>
-          <button type="button">
+          <button type="button" onClick={this.toggleAddresses}>
             Your Addresses
-            <div>{}</div>
           </button>
           <button type="button">Login/Security</button>
           <button type="button">Payment Options</button>
         </div>
-        <div>
-          <AddressList />
-        </div>
+        <div>{this.state.showAdresses && <AddressList />}</div>
       </div>
     )
   }
@@ -77,8 +83,8 @@ class UserHome extends Component {
  */
 const mapState = state => {
   return {
-    firstName: state.user.firstName,
-    address: state.user.addresses
+    firstName: state.user.firstName
+    // address: state.user.addresses
   }
 }
 
@@ -88,6 +94,6 @@ export default connect(mapState)(UserHome)
  * PROP TYPES
  */
 UserHome.propTypes = {
-  firstName: PropTypes.string,
-  address: PropTypes.array
+  firstName: PropTypes.string
+  // address: PropTypes.array
 }
