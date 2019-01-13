@@ -20,6 +20,8 @@ class UserHome extends Component {
 
   render() {
     const {firstName} = this.props
+    const recipient = this.props.address[0]
+    console.log('This is the recipient', recipient)
 
     return (
       <div>
@@ -39,7 +41,10 @@ class UserHome extends Component {
               )} */}
             </div>
           </button>
-          <button type="button">Your Addresses</button>
+          <button type="button">
+            Your Addresses
+            <div>{}</div>
+          </button>
           <button type="button">Login/Security</button>
           <button type="button">Payment Options</button>
         </div>
@@ -72,7 +77,8 @@ class UserHome extends Component {
  */
 const mapState = state => {
   return {
-    firstName: state.user.firstName
+    firstName: state.user.firstName,
+    address: state.user.addresses
   }
 }
 
@@ -82,5 +88,6 @@ export default connect(mapState)(UserHome)
  * PROP TYPES
  */
 UserHome.propTypes = {
-  firstName: PropTypes.string
+  firstName: PropTypes.string,
+  address: PropTypes.array
 }
