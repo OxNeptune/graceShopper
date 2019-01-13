@@ -1,9 +1,34 @@
-body {
-  font-family: sans-serif;
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  /* border: 1px solid red; */
+}
+
+html {
+  line-height: 1.6;
+  /* font-family: Roboto; */
+  font-family: monospace;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+  line-height: 1.2;
+  font-family: Libre Baskerville;
 }
 
 a {
   text-decoration: none;
+  color: black;
+}
+
+ul {
+  list-style: none;
 }
 
 label {
@@ -20,7 +45,96 @@ form div {
   display: inline-block;
 }
 
+/* navbar */
+header {
+  display: flex;
+  justify-content: space-between;
+  padding: 6px 50px;
+}
+
+.nav-link {
+  align-self: center;
+}
+
+.nav-link h1 {
+  font-size: 26px;
+  color: #63a083;
+}
+
 #cart-icon {
   height: 24px;
   width: 24px;
+}
+
+/* all plants landing page */
+.plant-list-wrapper {
+  margin-bottom: 100px;
+}
+
+.plant-list-wrapper h2 {
+  margin: 50px 8% 5px 8%;
+  border-bottom: 1px solid black;
+}
+
+.plant-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-auto-rows: 250px;
+  grid-auto-flow: dense;
+  grid-row-gap: 6em;
+  grid-column-gap: 3em;
+  padding: 10px 8%;
+}
+
+.plant-card h3 {
+  color: #63a083;
+  font-size: 26px;
+}
+
+.card-info {
+  display: flex;
+  justify-content: space-between;
+  padding-top: 10px;
+}
+
+.plant-card img {
+  /* display: block; */
+  object-fit: cover;
+  height: 100%;
+  width: 100%;
+}
+
+.banner {
+  height: 400px;
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  background-image: url('../images/banner02v2.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: bottom right;
+  background-color: black;
+  padding: 0 15%;
+}
+
+.banner h1 {
+  font-size: 72px;
+  color: white;
+}
+
+.banner h4 {
+  padding-top: 20px;
+  font-size: 24px;
+  color: #f8aac9;
+}
+
+.banner-text {
+  color: white;
+}
+
+#banner-img {
+  display: block;
+  object-fit: cover;
+  width: 100%;
 }
