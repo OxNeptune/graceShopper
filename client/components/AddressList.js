@@ -9,7 +9,6 @@ class AddressList extends Component {
   }
   render() {
     const addresses = this.props.addresses
-    console.log('Component displays')
 
     return (
       <div>

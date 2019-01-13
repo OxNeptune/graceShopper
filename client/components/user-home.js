@@ -1,10 +1,8 @@
 import React, {Component} from 'react'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
-// import {Link, withRouter} from 'react-router-dom'
 import AddressList from './AddressList'
-// import SingleAddress from './SingleAddress'
-// import orders from '../store/orders'
+import Orders from './Orders'
 
 /**
  * COMPONENT
@@ -19,7 +17,7 @@ class UserHome extends Component {
       showPaymentOptions: false
     }
     this.toggleAddresses = this.toggleAddresses.bind(this)
-    // this.toggleOrders = this.toggleOrders.bind(this)
+    this.toggleOrders = this.toggleOrders.bind(this)
   }
 
   toggleAddresses() {
@@ -28,9 +26,14 @@ class UserHome extends Component {
     })
   }
 
+  toggleOrders() {
+    this.setState({
+      showOrders: !this.state.showOrders
+    })
+  }
+
   render() {
     const {firstName} = this.props
-    console.log('User-home props', this.props)
 
     return (
       <div>
@@ -38,25 +41,15 @@ class UserHome extends Component {
         <div className="user-home-features">
           <button type="button" onClick={this.toggleOrders}>
             Orders
-            <div>
-              {/* {orders.length ? (
-                orders.map(order => (
-                  <Link to={`/orders/${order.id}`} key={order.id}>
-                    <Order />
-                  </Link>
-                ))
-              ) : (
-                <h4>You have no orders at this time</h4>
-              )} */}
-            </div>
           </button>
           <button type="button" onClick={this.toggleAddresses}>
             Your Addresses
           </button>
           <button type="button">Login/Security</button>
           <button type="button">Payment Options</button>
+          <div>{this.state.showAdresses && <AddressList />}</div>
+          <div>{this.state.showOrders && <Orders />}</div>
         </div>
-        <div>{this.state.showAdresses && <AddressList />}</div>
       </div>
     )
   }
