@@ -6,7 +6,6 @@ module.exports = router
 router.get('/', async (req, res, next) => {
   try {
     const plants = await Plant.findAll()
-    console.log('SESSION ON ALL', req.session)
     res.json(plants)
   } catch (err) {
     next(err)

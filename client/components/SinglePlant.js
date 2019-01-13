@@ -1,7 +1,11 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {getSinglePlantThunk} from '../store/plants'
-import {addPlantToCartThunk} from '../store/userCart'
+import {
+  addPlantToCartThunk,
+  updatePlantInCartThunk,
+  getCartThunk
+} from '../store/userCart'
 
 class SinglePlant extends Component {
   constructor() {
@@ -11,6 +15,7 @@ class SinglePlant extends Component {
 
   componentDidMount() {
     this.props.loadPlant(this.props.match.params.id)
+    this.props.loadCart()
   }
 
   handleSubmit = event => {
@@ -18,11 +23,28 @@ class SinglePlant extends Component {
     const plantId = this.props.plant.id
     const quantity = event.target.quantity.value
     const total = this.props.plant.price * quantity
-    this.props.addPlant({
-      plantId,
-      quantity,
-      total
-    })
+    const cart = this.props.cart
+    console.log('cart:', cart)
+
+    if (cart.length) {
+      cart.forEach(cartItem => {
+        console.log(cartItem.id, plantId)
+        if (cartItem.id === plantId) {
+          console.log('woo!')
+          this.props.updatePlant({
+            quantity: cartItem.quantity + quantity,
+            total: cartItem.total + total,
+            plantId
+          })
+        }
+      })
+    } else {
+      this.props.addPlant({
+        plantId,
+        quantity,
+        total
+      })
+    }
   }
 
   render() {
@@ -57,12 +79,15 @@ class SinglePlant extends Component {
 }
 
 const mapState = state => ({
-  plant: state.plants.singlePlant
+  plant: state.plants.singlePlant,
+  cart: state.userCart.cart
 })
 
 const mapDispatch = dispatch => ({
   loadPlant: id => dispatch(getSinglePlantThunk(id)),
-  addPlant: plantInfo => dispatch(addPlantToCartThunk(plantInfo))
+  addPlant: plantInfo => dispatch(addPlantToCartThunk(plantInfo)),
+  updatePlant: plantInfo => dispatch(updatePlantInCartThunk(plantInfo)),
+  loadCart: () => dispatch(getCartThunk())
 })
 
 export default connect(mapState, mapDispatch)(SinglePlant)
