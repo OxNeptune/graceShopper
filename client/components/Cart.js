@@ -1,8 +1,8 @@
 import React, {Component} from 'react'
 
 export class Cart extends Component {
-  render() {
-    const cart = this.props.cart
+  render(props) {
+    const cart = props.cart
     return (
       <div className="cart-wrapper">
         <h2 id="cart-title">Your Cart</h2>
