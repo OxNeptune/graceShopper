@@ -1,7 +1,11 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {getSinglePlantThunk} from '../store/plants'
-import {addPlantToCartThunk} from '../store/userCart'
+import {
+  addPlantToCartThunk,
+  updatePlantInCartThunk,
+  getCartThunk
+} from '../store/userCart'
 
 class SinglePlant extends Component {
   constructor() {
@@ -11,18 +15,38 @@ class SinglePlant extends Component {
 
   componentDidMount() {
     this.props.loadPlant(this.props.match.params.id)
+    this.props.loadCart()
   }
 
   handleSubmit = event => {
     event.preventDefault()
     const plantId = this.props.plant.id
-    const quantity = event.target.quantity.value
+    const quantity = Number(event.target.quantity.value)
     const total = this.props.plant.price * quantity
-    this.props.addPlant({
-      plantId,
-      quantity,
-      total
-    })
+    const cart = this.props.cart
+
+    if (!cart.length) {
+      this.props.addPlant({
+        plantId,
+        quantity,
+        total
+      })
+    } else {
+      const existingPlant = cart.filter(cartItem => cartItem.id === plantId)
+      if (existingPlant.length) {
+        this.props.updatePlant({
+          quantity: existingPlant[0].cartItem.quantity + quantity,
+          total: existingPlant[0].cartItem.total + total,
+          plantId
+        })
+      } else {
+        this.props.addPlant({
+          plantId,
+          quantity,
+          total
+        })
+      }
+    }
   }
 
   render() {
@@ -40,25 +64,20 @@ class SinglePlant extends Component {
           </div>
           <p>{plant.description}</p>
           <form onSubmit={this.handleSubmit}>
-            <div>
-              <p>Qty:</p>
-              <select name="Quantity">
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-              </select>
-            </div>
-            <div>
-              <p>Size:</p>
-              <select name="Size">
-                <option value="small">small</option>
-                <option value="medium">medium</option>
-                <option value="large">large</option>
-              </select>
-            </div>
-            <button type="submit" className="submit-button">
-              Add to Cart
-            </button>
+            Qty:
+            <select name="quantity">
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+            </select>
+            {/* Size:
+            <select name="Size">
+              <option value="small">small</option>
+              <option value="medium">medium</option>
+              <option value="large">large</option>
+            </select> */}
+            <button type="submit">Add to Cart</button>
+
           </form>
         </div>
 
@@ -69,12 +88,15 @@ class SinglePlant extends Component {
 }
 
 const mapState = state => ({
-  plant: state.plants.singlePlant
+  plant: state.plants.singlePlant,
+  cart: state.userCart.cart
 })
 
 const mapDispatch = dispatch => ({
   loadPlant: id => dispatch(getSinglePlantThunk(id)),
-  addPlant: plantInfo => dispatch(addPlantToCartThunk(plantInfo))
+  addPlant: plantInfo => dispatch(addPlantToCartThunk(plantInfo)),
+  updatePlant: plantInfo => dispatch(updatePlantInCartThunk(plantInfo)),
+  loadCart: () => dispatch(getCartThunk())
 })
 
 export default connect(mapState, mapDispatch)(SinglePlant)
