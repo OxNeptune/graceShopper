@@ -9,7 +9,8 @@ import {
   PlantList,
   SinglePlant,
   AddressList,
-  Orders
+  Orders,
+  UserCart
 } from './components'
 import {me} from './store'
 
