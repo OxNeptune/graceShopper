@@ -17,6 +17,7 @@ router.get('/', async (req, res, next) => {
         model: Plant
       }
     })
+
     res.json(cartWithPlants)
   } catch (error) {
     next(error)
@@ -43,15 +44,22 @@ router.delete('/:id', async (req, res, next) => {
 
 router.post('/', async (req, res, next) => {
   const {plantId, quantity, total} = req.body
+
   const cartId = req.session.cartId
   try {
-    const cartItem = await CartItem.create({
+    await CartItem.create({
       plantId,
       quantity,
       total,
       cartId
     })
-    res.send(cartItem)
+    const newCartItem = await Cart.findById(cartId, {
+      include: {
+        model: Plant
+      }
+    })
+
+    res.send(newCartItem.plants)
   } catch (err) {
     next(err)
   }
@@ -59,6 +67,7 @@ router.post('/', async (req, res, next) => {
 
 router.put('/', async (req, res, next) => {
   const {plantId, quantity, total} = req.body
+  const cartId = req.session.cartId
   try {
     await CartItem.update(
       {
@@ -72,13 +81,12 @@ router.put('/', async (req, res, next) => {
         }
       }
     )
-    const updated = await CartItem.findOne({
-      where: {
-        plantId: plantId,
-        cartId: req.session.cartId
+    const updatedCartItem = await Cart.findById(req.session.cartId, {
+      include: {
+        model: Plant
       }
     })
-    res.send(updated)
+    res.send(updatedCartItem.plants)
   } catch (err) {
     next(err)
   }
