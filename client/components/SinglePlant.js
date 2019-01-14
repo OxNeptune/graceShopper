@@ -1,10 +1,28 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {getSinglePlantThunk} from '../store/plants'
+import {addPlantToCartThunk} from '../store/userCart'
 
 class SinglePlant extends Component {
+  constructor() {
+    super()
+    this.handleSubmit = this.handleSubmit.bind(this)
+  }
+
   componentDidMount() {
     this.props.loadPlant(this.props.match.params.id)
+  }
+
+  handleSubmit = event => {
+    event.preventDefault()
+    const plantId = this.props.plant.id
+    const quantity = event.target.quantity.value
+    const total = this.props.plant.price * quantity
+    this.props.addPlant({
+      plantId,
+      quantity,
+      total
+    })
   }
 
   render() {
@@ -43,6 +61,8 @@ class SinglePlant extends Component {
             </button>
           </form>
         </div>
+
+
       </div>
     )
   }
@@ -53,7 +73,8 @@ const mapState = state => ({
 })
 
 const mapDispatch = dispatch => ({
-  loadPlant: id => dispatch(getSinglePlantThunk(id))
+  loadPlant: id => dispatch(getSinglePlantThunk(id)),
+  addPlant: plantInfo => dispatch(addPlantToCartThunk(plantInfo))
 })
 
 export default connect(mapState, mapDispatch)(SinglePlant)

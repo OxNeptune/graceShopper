@@ -53,7 +53,8 @@ router.post('/signup', async (req, res, next) => {
       res.status(401).send("Password can't be blank")
     }
     req.session.userid = user.id
-    await Cart.create({userId: user.id})
+    const cart = await Cart.create({userId: user.id})
+    req.session.cartId = cart.id
     req.login(user, err => (err ? next(err) : res.json(user)))
   } catch (err) {
     if (err.name === 'SequelizeUniqueConstraintError') {
@@ -72,8 +73,17 @@ router.post('/logout', (req, res) => {
   res.redirect('/')
 })
 
-router.get('/me', (req, res) => {
-  res.json(req.user)
+router.get('/me', async (req, res, next) => {
+  try {
+    const cart = await Cart.find({
+      where: {userId: req.user.id}
+    })
+    req.session.cartId = cart.id
+
+    res.json(req.user)
+  } catch (error) {
+    next(error)
+  }
 })
 
 router.use('/google', require('./google'))
