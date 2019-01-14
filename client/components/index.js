@@ -5,8 +5,10 @@
  */
 export {default as Navbar} from './navbar'
 export {default as UserHome} from './user-home'
-export {Login, Signup} from './auth-form'
+export {Login, Signup} from './Auth-form'
 export {default as PlantList} from './PlantList'
 export {default as SinglePlant} from './SinglePlant'
 export {default as GuestCart} from './GuestCart'
 export {default as UserCart} from './UserCart'
+export {default as AddressList} from './AddressList'
+export {default as Orders} from './Orders'

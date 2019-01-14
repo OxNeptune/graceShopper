@@ -80,8 +80,6 @@ class SinglePlant extends Component {
 
           </form>
         </div>
-
-
       </div>
     )
   }

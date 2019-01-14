@@ -8,10 +8,12 @@ import {
   UserHome,
   PlantList,
   SinglePlant,
+  AddressList,
+  Orders,
   UserCart
 } from './components'
 import {me} from './store'
-import AddressList from './components/AddressList'
+
 
 /**
  * COMPONENT
@@ -37,8 +39,9 @@ class Routes extends Component {
         {isLoggedIn && (
           <Switch>
             {/* Routes placed here are only available after logging in */}
-            <Route path="/home" component={UserHome} />
-            <Route path="/addresses" component={AddressList} />
+            <Route path="/account" component={UserHome} />
+            <Route exact path="/account/addresses" component={AddressList} />
+            <Route exact path="/account/orders" component={Orders} />
           </Switch>
         )}
         {/* Displays our Login component as a fallback */}
