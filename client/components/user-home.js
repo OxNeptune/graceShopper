@@ -22,12 +22,14 @@ class UserHome extends Component {
 
   toggleAddresses() {
     this.setState({
-      showAdresses: !this.state.showAdresses
+      showAdresses: !this.state.showAdresses,
+      showOrders: this.state.showOrders
     })
   }
 
   toggleOrders() {
     this.setState({
+      showAdresses: this.state.showAdresses,
       showOrders: !this.state.showOrders
     })
   }
