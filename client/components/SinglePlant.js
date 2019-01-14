@@ -21,29 +21,31 @@ class SinglePlant extends Component {
   handleSubmit = event => {
     event.preventDefault()
     const plantId = this.props.plant.id
-    const quantity = event.target.quantity.value
+    const quantity = Number(event.target.quantity.value)
     const total = this.props.plant.price * quantity
     const cart = this.props.cart
-    console.log('cart:', cart)
 
-    if (cart.length) {
-      cart.forEach(cartItem => {
-        console.log(cartItem.id, plantId)
-        if (cartItem.id === plantId) {
-          console.log('woo!')
-          this.props.updatePlant({
-            quantity: cartItem.quantity + quantity,
-            total: cartItem.total + total,
-            plantId
-          })
-        }
-      })
-    } else {
+    if (!cart.length) {
       this.props.addPlant({
         plantId,
         quantity,
         total
       })
+    } else {
+      const existingPlant = cart.filter(cartItem => cartItem.id === plantId)
+      if (existingPlant.length) {
+        this.props.updatePlant({
+          quantity: existingPlant[0].cartItem.quantity + quantity,
+          total: existingPlant[0].cartItem.total + total,
+          plantId
+        })
+      } else {
+        this.props.addPlant({
+          plantId,
+          quantity,
+          total
+        })
+      }
     }
   }
 
@@ -64,12 +66,12 @@ class SinglePlant extends Component {
               <option value="2">2</option>
               <option value="3">3</option>
             </select>
-            Size:
+            {/* Size:
             <select name="Size">
               <option value="small">small</option>
               <option value="medium">medium</option>
               <option value="large">large</option>
-            </select>
+            </select> */}
             <button type="submit">Add to Cart</button>
           </form>
         </span>

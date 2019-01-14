@@ -60,20 +60,25 @@ router.post('/', async (req, res, next) => {
 router.put('/', async (req, res, next) => {
   const {plantId, quantity, total} = req.body
   try {
-    const plantToUpdate = await CartItem.findOne({
+    await CartItem.update(
+      {
+        quantity,
+        total
+      },
+      {
+        where: {
+          plantId: plantId,
+          cartId: req.session.cartId
+        }
+      }
+    )
+    const updated = await CartItem.findOne({
       where: {
         plantId: plantId,
-        cartId: req.session.Id
+        cartId: req.session.cartId
       }
     })
-    const updatedPlant = await plantToUpdate.update({
-      quantity,
-      total,
-      where: {
-        returning: true
-      }
-    })
-    res.send(updatedPlant)
+    res.send(updated)
   } catch (err) {
     next(err)
   }

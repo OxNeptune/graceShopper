@@ -11,7 +11,8 @@ export class Cart extends Component {
           {cart.map(plant => (
             <div key={plant.id}>
               <img src={plant.imageURI} />
-              {plant.name} ${plant.price} {plant.quantity} ${plant.total}
+              {plant.name} Each: ${plant.price} x Quantity:{' '}
+              {plant.cartItem.quantity} = Total: ${plant.cartItem.total}
             </div>
           ))}
         </div>

@@ -60,8 +60,17 @@ export default (state = initialState, action) => {
       return {...state, cart: action.cart}
     case ADDED_PLANT_TO_CART:
       return {...state, cart: [...state.cart, action.cartItem]}
-    case UPDATED_PLANT_IN_CART:
-      return {...state, cart: [...state.cart, action.cartItem]}
+    case UPDATED_PLANT_IN_CART: {
+      const newArr = []
+      state.cart.forEach(cartItem => {
+        if (cartItem.plantId === action.cartItem.plantId) {
+          newArr.push(action.cartItem)
+        } else {
+          newArr.push(cartItem)
+        }
+      })
+      return {...state, cart: newArr}
+    }
     default:
       return state
   }
