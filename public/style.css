@@ -217,3 +217,10 @@ header {
   color: white;
   background: #a9cbbb;
 }
+
+.single-plant-wrapper form {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-evenly;
+}
