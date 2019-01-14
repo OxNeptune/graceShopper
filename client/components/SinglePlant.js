@@ -21,10 +21,10 @@ class SinglePlant extends Component {
             <h3>${plant.price}.00</h3>
           </div>
           <p>{plant.description}</p>
-          <form>
-            <div className="select-box">
+          <form onSubmit={this.handleSubmit}>
+            <div>
               <p>Qty:</p>
-              <select name="Qty">
+              <select name="Quantity">
                 <option value="1">1</option>
                 <option value="2">2</option>
                 <option value="3">3</option>
