@@ -54,11 +54,15 @@ class SinglePlant extends Component {
 
     return (
       <div className="single-plant-wrapper">
-        <img src={plant.imageURI} />
-        <h2>{plant.name}</h2>
-        <h4>${plant.price}.00</h4>
-        <p>{plant.description}</p>
-        <span>
+        <div className="single-plant-img">
+          <img src={plant.imageURI} />
+        </div>
+        <div className="single-plant-info">
+          <div className="plant-head">
+            <h1>{plant.name}</h1>
+            <h3>${plant.price}.00</h3>
+          </div>
+          <p>{plant.description}</p>
           <form onSubmit={this.handleSubmit}>
             Qty:
             <select name="quantity">
@@ -73,8 +77,11 @@ class SinglePlant extends Component {
               <option value="large">large</option>
             </select> */}
             <button type="submit">Add to Cart</button>
+
           </form>
-        </span>
+        </div>
+
+
       </div>
     )
   }

@@ -17,15 +17,22 @@ class PlantList extends Component {
 
     return (
       <div className="plant-list-wrapper">
-        <img id="landing-plants" src="/images/landing-plants.jpg" />
+        <div className="banner">
+          <div className="banner-text">
+            <h1>Turn Over A New Leaf in 2019</h1>
+          </div>
+        </div>
         <h2 id="plant-list-title">All Plants</h2>
         <div className="plant-list">
           {plantList.map(plant => (
-            <div key={plant.id}>
+            <div key={plant.id} className="plant-card">
               <Link to={`/plants/${plant.id}`}>
                 <img src={plant.imageURI} />
+                <div className="card-info">
+                  <h3>{plant.name}</h3>
+                  <p>${plant.price}</p>
+                </div>
               </Link>
-              {plant.name} ${plant.price}
             </div>
           ))}
         </div>
