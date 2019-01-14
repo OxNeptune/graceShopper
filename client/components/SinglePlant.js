@@ -30,27 +30,39 @@ class SinglePlant extends Component {
 
     return (
       <div className="single-plant-wrapper">
-        <img src={plant.imageURI} />
-        <h2>{plant.name}</h2>
-        <h4>${plant.price}.00</h4>
-        <p>{plant.description}</p>
-        <span>
+        <div className="single-plant-img">
+          <img src={plant.imageURI} />
+        </div>
+        <div className="single-plant-info">
+          <div className="plant-head">
+            <h1>{plant.name}</h1>
+            <h3>${plant.price}.00</h3>
+          </div>
+          <p>{plant.description}</p>
           <form onSubmit={this.handleSubmit}>
-            Qty:
-            <select name="quantity">
-              <option value="1">1</option>
-              <option value="2">2</option>
-              <option value="3">3</option>
-            </select>
-            Size:
-            <select name="Size">
-              <option value="small">small</option>
-              <option value="medium">medium</option>
-              <option value="large">large</option>
-            </select>
-            <button type="submit">Add to Cart</button>
+            <div>
+              <p>Qty:</p>
+              <select name="Quantity">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+              </select>
+            </div>
+            <div>
+              <p>Size:</p>
+              <select name="Size">
+                <option value="small">small</option>
+                <option value="medium">medium</option>
+                <option value="large">large</option>
+              </select>
+            </div>
+            <button type="submit" className="submit-button">
+              Add to Cart
+            </button>
           </form>
-        </span>
+        </div>
+
+
       </div>
     )
   }
