@@ -6,13 +6,17 @@ import {connect} from 'react-redux'
 import {getCartThunk} from '../store/userCart'
 import {Cart} from './Cart'
 
-export class UserCart extends Component {
+class UserCart extends Component {
   render() {
     const cart = this.props.cart
 
     return (
       <div className="user-cart-wrapper">
-        <Cart cart={cart} />
+        {cart.length ? (
+          <Cart cart={cart} />
+        ) : (
+          <h3>You have no items in your cart!</h3>
+        )}
       </div>
     )
   }
@@ -22,9 +26,11 @@ export class UserCart extends Component {
   }
 }
 
-const mapState = state => ({
-  cart: state.cart.cart
-})
+const mapState = state => {
+  return {
+    cart: state.userCart.cart
+  }
+}
 
 const mapDispatch = dispatch => ({
   loadCart: () => dispatch(getCartThunk())

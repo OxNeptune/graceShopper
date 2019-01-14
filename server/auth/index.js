@@ -75,10 +75,12 @@ router.post('/logout', (req, res) => {
 
 router.get('/me', async (req, res, next) => {
   try {
-    const cart = await Cart.find({
-      where: {userId: req.user.id}
-    })
-    req.session.cartId = cart.id
+    if (req.user) {
+      const cart = await Cart.find({
+        where: {userId: req.user.id}
+      })
+      req.session.cartId = cart.id
+    }
 
     res.json(req.user)
   } catch (error) {

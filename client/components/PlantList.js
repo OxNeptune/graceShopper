@@ -4,11 +4,6 @@ import {getPlantsThunk} from '../store/plants'
 import {Link} from 'react-router-dom'
 
 class PlantList extends Component {
-  constructor(props) {
-    super(props)
-    // this.showPlant = this.showPlant.bind(this)
-  }
-
   componentDidMount() {
     this.props.loadPlants()
   }
