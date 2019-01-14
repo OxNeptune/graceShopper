@@ -33,6 +33,7 @@ class SinglePlant extends Component {
       })
     } else {
       const existingPlant = cart.filter(cartItem => cartItem.id === plantId)
+
       if (existingPlant.length) {
         this.props.updatePlant({
           quantity: existingPlant[0].cartItem.quantity + quantity,
@@ -70,14 +71,7 @@ class SinglePlant extends Component {
               <option value="2">2</option>
               <option value="3">3</option>
             </select>
-            {/* Size:
-            <select name="Size">
-              <option value="small">small</option>
-              <option value="medium">medium</option>
-              <option value="large">large</option>
-            </select> */}
             <button type="submit">Add to Cart</button>
-
           </form>
         </div>
       </div>
