@@ -16,7 +16,7 @@ describe('UserHome', () => {
     userHome = shallow(<UserHome firstName="Cody" />)
   })
 
-  xit('renders the name in an h3', () => {
-    expect(userHome.find('h3').text()).to.be.equal('Welcome, Cody')
+  it('renders the name in an h2', () => {
+    expect(userHome.find('h2').text()).to.be.equal('Welcome, Cody')
   })
 })
