@@ -8,7 +8,13 @@ export default class GuestCart extends Component {
   render() {
     let cart = JSON.parse(localStorage.getItem('cart'))
     if (!cart) cart = []
+    let total = 0
 
+    cart.forEach(item => {
+      total += item.total
+    })
+
+    localStorage.setItem('OrderTotal', JSON.stringify(total))
     return (
       <div className="user-cart-wrapper">
         {cart.length ? (
@@ -16,6 +22,9 @@ export default class GuestCart extends Component {
         ) : (
           <h3>You have no items in your cart!</h3>
         )}
+        <div>
+          <h2>Your Total is ${total}!</h2>
+        </div>
       </div>
     )
   }
