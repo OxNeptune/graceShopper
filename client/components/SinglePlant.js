@@ -59,7 +59,10 @@ class SinglePlant extends Component {
         total,
         plant
       }
-      const localStorageCart = JSON.parse(localStorage.getItem('cart'))
+      let localStorageCart = JSON.parse(localStorage.getItem('cart'))
+      if (!localStorageCart) {
+        localStorageCart = []
+      }
       if (localStorageCart.length) {
         const foundIndex = localStorageCart.findIndex(
           cartItem => cartItem.plant.id === plantId
