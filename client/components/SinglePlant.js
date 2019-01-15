@@ -8,7 +8,7 @@ import {
 } from '../store/userCart'
 import {me} from '../store'
 
-class SinglePlant extends Component {
+export class SinglePlant extends Component {
   constructor() {
     super()
     this.handleSubmit = this.handleSubmit.bind(this)

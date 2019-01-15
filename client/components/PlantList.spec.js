@@ -50,7 +50,8 @@ describe('PlantList', () => {
     expect(divs).to.have.length(plants.length)
     plants.forEach(plant => {
       const matchingDiv = divs.filterWhere(div => div.text() === plant.name)
-      // expect(matchingDiv).to.exist
+      // eslint-disable-next-line no-unused-expressions
+      expect(matchingDiv).to.exist
     })
   })
 })
