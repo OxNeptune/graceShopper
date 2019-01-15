@@ -6,7 +6,7 @@ export class Cart extends Component {
     console.log(cart)
     return (
       <div className="cart-wrapper">
-        <h2 id="cart-title">Your Cart</h2>
+        {/* <h2 id="cart-title">Your Cart</h2> */}
         <div className="cart">
           {cart.map(plant => (
             <div key={plant.id}>

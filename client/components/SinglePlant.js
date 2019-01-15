@@ -113,7 +113,9 @@ class SinglePlant extends Component {
               <option value="2">2</option>
               <option value="3">3</option>
             </select>
-            <button type="submit">Add to Cart</button>
+            <button className="submit-button" type="submit">
+              Add to Cart
+            </button>
           </form>
         </div>
       </div>
