@@ -9,7 +9,12 @@ import {Cart} from './Cart'
 class UserCart extends Component {
   render() {
     const cart = this.props.cart
+    let total = 0
 
+    cart.forEach(item => {
+      total += item.cartItem.total
+    })
+    localStorage.setItem('OrderTotal', JSON.stringify(total))
     return (
       <div className="user-cart-wrapper">
         {cart.length ? (
@@ -17,6 +22,9 @@ class UserCart extends Component {
         ) : (
           <h3>You have no items in your cart!</h3>
         )}
+        <div>
+          <h2>Your Total is ${total}!</h2>
+        </div>
       </div>
     )
   }
