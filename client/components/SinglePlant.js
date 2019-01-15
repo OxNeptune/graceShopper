@@ -28,7 +28,10 @@ class SinglePlant extends Component {
     const quantity = Number(event.target.quantity.value)
     const total = this.props.plant.price * quantity
     const cart = this.props.cart
-
+    let orderTotal = JSON.parse(localStorage.getItem('OrderTotal'))
+    if (!orderTotal) {
+      orderTotal = 0
+    }
     if (this.props.isLoggedIn) {
       if (!cart.length) {
         this.props.addPlant({
@@ -36,6 +39,7 @@ class SinglePlant extends Component {
           quantity,
           total
         })
+        orderTotal += total
       } else {
         const existingPlant = cart.filter(cartItem => cartItem.id === plantId)
 
@@ -45,12 +49,14 @@ class SinglePlant extends Component {
             total: existingPlant[0].cartItem.total + total,
             plantId
           })
+          orderTotal += total
         } else {
           this.props.addPlant({
             plantId,
             quantity,
             total
           })
+          orderTotal += total
         }
       }
     } else {
@@ -59,6 +65,7 @@ class SinglePlant extends Component {
         total,
         plant
       }
+
       let localStorageCart = JSON.parse(localStorage.getItem('cart'))
       if (!localStorageCart) {
         localStorageCart = []
@@ -73,23 +80,18 @@ class SinglePlant extends Component {
           localStorageCart[foundIndex].total =
             localStorageCart[foundIndex].total + total
           localStorageCart.splice(foundIndex, 1, localStorageCart[foundIndex])
+          orderTotal += total
         } else {
           localStorageCart.push(newPlant)
+          orderTotal += total
         }
       } else {
         localStorageCart.push(newPlant)
+        orderTotal += total
       }
       localStorage.setItem('cart', JSON.stringify(localStorageCart))
     }
-
-    //     if the array in local storage has length
-    //     search through the array for the current plant
-    //         if current plant exists
-    //             update the qty and total in the array
-    //         if it doesn’t
-    //             push it to the end of the array
-    //         if it doesn’t have length
-    //           push the plant into the array
+    localStorage.setItem('OrderTotal', JSON.stringify(orderTotal))
   }
 
   render() {
