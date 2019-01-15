@@ -3,7 +3,7 @@ import {connect} from 'react-redux'
 import {getPlantsThunk} from '../store/plants'
 import {Link} from 'react-router-dom'
 
-class PlantList extends Component {
+export class PlantList extends Component {
   componentDidMount() {
     this.props.loadPlants()
   }

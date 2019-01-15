@@ -7,7 +7,7 @@ import Orders from './Orders'
 /**
  * COMPONENT
  */
-class UserHome extends Component {
+export class UserHome extends Component {
   constructor(props) {
     super(props)
     this.state = {
