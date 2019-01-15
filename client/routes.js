@@ -10,10 +10,10 @@ import {
   SinglePlant,
   AddressList,
   Orders,
-  UserCart
+  UserCart,
+  GuestCart
 } from './components'
 import {me} from './store'
-
 
 /**
  * COMPONENT
@@ -35,13 +35,14 @@ class Routes extends Component {
         <Route path="/signup" component={Signup} />
         <Route exact path="/plants" component={PlantList} />
         <Route path="/plants/:id" component={SinglePlant} />
-        <Route path="/cart" component={UserCart} />
+        <Route path="/cart" component={GuestCart} />
         {isLoggedIn && (
           <Switch>
             {/* Routes placed here are only available after logging in */}
             <Route path="/account" component={UserHome} />
             <Route exact path="/account/addresses" component={AddressList} />
             <Route exact path="/account/orders" component={Orders} />
+            <Route path="/mycart" component={UserCart} />
           </Switch>
         )}
         {/* Displays our Login component as a fallback */}
