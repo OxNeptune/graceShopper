@@ -6,8 +6,8 @@ import {CartTwo} from './CartTwo'
 
 export default class GuestCart extends Component {
   render() {
-    const cart = JSON.parse(localStorage.getItem('cart'))
-    console.log(cart)
+    let cart = JSON.parse(localStorage.getItem('cart'))
+    if (!cart) cart = []
 
     return (
       <div className="user-cart-wrapper">

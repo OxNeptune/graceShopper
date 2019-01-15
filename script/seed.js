@@ -92,7 +92,7 @@ const plants = [
     size: 'medium',
     description:
       'Palm trees are erect, slender-stemmed, single-trunked palms that can grow up to 30 m tall but normally trees are in between 10 to 15 m in height. Trunk is green when young, grey coloured in old trees with prominent white leaf scars.',
-    imageURI: '/images/pine.jpg'
+    imageURI: '/images/palm.png'
   },
   {
     type: 'trees',
