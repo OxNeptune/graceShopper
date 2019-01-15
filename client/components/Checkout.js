@@ -4,11 +4,16 @@ import InjectedCheckoutForm from './CheckoutForm'
 
 class Checkout extends Component {
   render() {
+    const total = localStorage.OrderTotal
+    console.log(localStorage)
     console.log('hello')
     return (
-      <Elements>
-        <InjectedCheckoutForm />
-      </Elements>
+      <div>
+        <h3>Total: ${total}</h3>
+        <Elements>
+          <InjectedCheckoutForm />
+        </Elements>
+      </div>
     )
   }
 }
