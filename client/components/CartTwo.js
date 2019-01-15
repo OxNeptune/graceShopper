@@ -16,7 +16,6 @@ export class CartTwo extends Component {
               <div className="cart-info">
                 <h1>{plant.plant.name}</h1>
                 <h4>
-                  {' '}
                   Each: ${plant.plant.price} x Quantity: {plant.quantity}
                 </h4>
                 <h3>Total: ${plant.total}</h3>

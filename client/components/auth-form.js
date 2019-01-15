@@ -10,7 +10,8 @@ const AuthForm = props => {
   const {name, displayName, handleSubmit, error} = props
 
   return (
-    <div>
+    <div className="signup">
+      <h1>Sign Up/Login</h1>
       <form onSubmit={handleSubmit} name={name}>
         {name === 'signup' && (
           <div>
@@ -41,7 +42,9 @@ const AuthForm = props => {
           <input name="password" type="password" required />
         </div>
         <div>
-          <button type="submit">{displayName}</button>
+          <button className="submit-button" type="submit">
+            {displayName}
+          </button>
         </div>
         {error && error.response && <div> {error.response.data} </div>}
       </form>
