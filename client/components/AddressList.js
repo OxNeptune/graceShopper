@@ -1,9 +1,9 @@
-import {SingleAddress} from './SingleAddress'
-import {getUserProfileThunk, addAddress, removeAddress} from '../store/user'
+import React, {Component} from 'react'
 import {connect} from 'react-redux'
-import React from 'react'
+import {getUserProfileThunk, addAddress, removeAddress} from '../store/user'
+import SingleAddress from './SingleAddress'
 
-class AddressList extends React.Component {
+class AddressList extends Component {
   componentDidMount() {
     this.props.loadUser(this.props.id)
   }

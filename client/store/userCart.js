@@ -9,21 +9,35 @@ const initialState = {
 
 const GOT_CART = 'GOT_CART'
 const ADDED_PLANT_TO_CART = 'ADDED_PLANT_TO_CART'
+const UPDATED_PLANT_IN_CART = 'UPDATED_PLANT_IN_CART'
 
-const gotCart = cart => ({
+export const gotCart = cart => ({
   type: GOT_CART,
   cart
 })
 
-const addedPlantToCart = cartItem => ({
+export const addedPlantToCart = cartItem => ({
   type: ADDED_PLANT_TO_CART,
   cartItem
 })
 
+export const updatedPlantInCart = cartItem => ({
+  type: UPDATED_PLANT_IN_CART,
+  cartItem
+})
+
+export const updatePlantInCartThunk = plantInfo => async dispatch => {
+  try {
+    const res = await axios.put('/api/guestCart', plantInfo)
+    dispatch(updatedPlantInCart(res.data))
+  } catch (err) {
+    console.error(err)
+  }
+}
+
 export const addPlantToCartThunk = plantInfo => async dispatch => {
   try {
     const res = await axios.post('/api/guestCart', plantInfo)
-    console.log(res.data)
     dispatch(addedPlantToCart(res.data))
   } catch (err) {
     console.error(err)
@@ -32,8 +46,8 @@ export const addPlantToCartThunk = plantInfo => async dispatch => {
 
 export const getCartThunk = () => async dispatch => {
   try {
-    const res = await axios.get('/api/cart')
-    dispatch(gotCart(res.data))
+    const res = await axios.get('/api/guestCart')
+    dispatch(gotCart(res.data.plants))
   } catch (err) {
     console.error(err)
   }
@@ -45,7 +59,9 @@ export default (state = initialState, action) => {
     case GOT_CART:
       return {...state, cart: action.cart}
     case ADDED_PLANT_TO_CART:
-      return {...state, cart: [...state.cart, action.cartItem]}
+      return {...state, cart: action.cartItem}
+    case UPDATED_PLANT_IN_CART:
+      return {...state, cart: action.cartItem}
     default:
       return state
   }
