@@ -9,6 +9,7 @@ class CheckoutForm extends Component {
   }
 
   async submit(ev) {
+    console.log('ev', ev)
     let {error, token} = await this.props.stripe.createToken({name: 'Name'})
     if (error) console.log('Error', error)
     console.log('TOKEN', token)
@@ -27,9 +28,13 @@ class CheckoutForm extends Component {
 
     return (
       <div className="stripe-checkout checkout">
-        <p>Would you like to complete the purchase?</p>
-        <CardElement />
-        <button onClick={this.submit}>Send</button>
+        <form>
+          <h1>Checkout</h1>
+          <br />
+
+          <CardElement />
+          <button onClick={this.submit}>Send</button>
+        </form>
       </div>
     )
   }
