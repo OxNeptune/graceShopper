@@ -3,6 +3,8 @@
 
 import React, {Component} from 'react'
 import {CartTwo} from './CartTwo'
+import Checkout from './Checkout'
+import {Link} from 'react-router-dom'
 
 export default class GuestCart extends Component {
   render() {
@@ -18,13 +20,16 @@ export default class GuestCart extends Component {
     return (
       <div className="user-cart-wrapper">
         {cart.length ? (
-          <CartTwo cart={cart} />
+          <div>
+            <CartTwo cart={cart} />
+            <h2>Your Total is ${total}!</h2>
+            <Link to="/checkout" component={Checkout}>
+              <button type="submit">Checkout</button>
+            </Link>
+          </div>
         ) : (
           <h3>You have no items in your cart!</h3>
         )}
-        <div>
-          <h2>Your Total is ${total}!</h2>
-        </div>
       </div>
     )
   }
