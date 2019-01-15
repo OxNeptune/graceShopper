@@ -9,9 +9,8 @@ import {SinglePlant} from './SinglePlant'
 const adapter = new Adapter()
 enzyme.configure({adapter})
 
-describe.only('SinglePlant', () => {
+describe('SinglePlant', () => {
   let singlePlant
-  let divs
   const plant = {
     type: 'flowers',
     name: 'Peace Lily',
