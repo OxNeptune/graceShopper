@@ -11,6 +11,7 @@ enzyme.configure({adapter})
 
 describe('UserHome', () => {
   let userHome
+  // let yourAddresses
 
   beforeEach(() => {
     userHome = shallow(<UserHome firstName="Cody" />)
@@ -19,4 +20,9 @@ describe('UserHome', () => {
   it('renders the name in an h2', () => {
     expect(userHome.find('h2').text()).to.be.equal('Welcome, Cody')
   })
+
+  // it('renders AddressList when "Your Adresses" button is clicked', () => {
+  //   userHome.find('button').simulate('click')
+  //   expect(yourAddresses.called).to.be.true;
+  // })
 })
