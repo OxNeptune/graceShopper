@@ -6,7 +6,7 @@
 }
 
 html {
-  line-height: 1.6;
+  /* line-height: 1.6;
   /* font-family: Roboto; */
   font-family: monospace;
   -webkit-font-smoothing: antialiased;
@@ -39,11 +39,11 @@ nav a {
   display: inline-block;
   margin: 1em;
 }
-
+/*
 form div {
   margin: 1em;
   display: inline-block;
-}
+} */
 
 /* navbar */
 header {
@@ -223,4 +223,12 @@ header {
   flex-direction: row;
   align-items: center;
   justify-content: space-evenly;
+}
+
+/* Stripe form */
+.stripe-checkout {
+  max-width: 600px;
+  padding: 50px;
+  border: 1px solid black;
+  margin: 50px auto;
 }
