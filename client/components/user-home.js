@@ -38,20 +38,32 @@ export class UserHome extends Component {
     const {firstName} = this.props
 
     return (
-      <div>
+      <div className="user-home-wrapper">
         <h2>Welcome, {firstName}</h2>
-        <div className="user-home-features">
-          <button type="button" onClick={this.toggleOrders}>
+        <div className="user-home-buttons">
+          <button
+            className="user-submit-button"
+            type="button"
+            onClick={this.toggleOrders}
+          >
             Orders
           </button>
-          <button type="button" onClick={this.toggleAddresses}>
+          <button
+            className="user-submit-button"
+            type="button"
+            onClick={this.toggleAddresses}
+          >
             Your Addresses
           </button>
-          <button type="button">Login/Security</button>
-          <button type="button">Payment Options</button>
-          <div>{this.state.showAdresses && <AddressList />}</div>
-          <div>{this.state.showOrders && <Orders />}</div>
+          <button className="user-submit-button" type="button">
+            Login/Security
+          </button>
+          <button className="user-submit-button" type="button">
+            Payment Options
+          </button>
         </div>
+        <div>{this.state.showAdresses && <AddressList />}</div>
+        <div>{this.state.showOrders && <Orders />}</div>
       </div>
     )
   }
