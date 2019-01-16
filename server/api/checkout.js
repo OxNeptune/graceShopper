@@ -1,14 +1,16 @@
 const router = require('express').Router()
-const stripe = require('stripe')('sk_test_yPgimMUmOGa4ZcrYR5DUwamP')
+const stripe = require('stripe')(process.env.STRIPE_KEY)
 module.exports = router
 
 router.post('/charge', async (req, res) => {
   try {
+    const token = req.body.stripeToken
+
     let {status} = await stripe.charges.create({
-      amount: 2000,
+      amount: req.body.amount,
       currency: 'usd',
-      description: 'An example charge',
-      source: req.body
+      description: 'Plant Planet Charge',
+      source: token
     })
     console.log(status)
     res.json({status})
