@@ -324,3 +324,36 @@ nav {
 .signup button {
   margin: 15px 0px 15px 0px;
 }
+
+/* user-home */
+.user-home-wrapper {
+  padding: 10px 8%;
+  display: flex;
+  flex-direction: column;
+}
+
+.user-home-buttons {
+  margin: 15px 0px 15px 0px;
+}
+
+.user-submit-button {
+  margin: 10px 10px 0px 0px;
+  outline: none;
+  height: 40px;
+  text-align: center;
+  width: 130px;
+  border-radius: 40px;
+  background: #fff;
+  border: 2px solid #a9cbbb;
+  /* color: #a9cbbb; */
+  letter-spacing: 1px;
+  text-shadow: 0;
+  font-size: 14px;
+  font-weight: bold;
+  /* font-family: monospace; */
+}
+
+.user-submit-button:hover {
+  color: white;
+  background: #a9cbbb;
+}
