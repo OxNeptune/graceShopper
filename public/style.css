@@ -334,6 +334,7 @@ nav {
 
 .user-home-buttons {
   margin: 15px 0px 15px 0px;
+  display: flex;
 }
 
 .user-submit-button {

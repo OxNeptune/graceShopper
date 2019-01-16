@@ -3,7 +3,7 @@ import React, {Component} from 'react'
 export class Cart extends Component {
   render() {
     const cart = this.props.cart
-    console.log(cart)
+
     return (
       <div className="cart-wrapper">
         <h2 id="plant-list-title">Your Cart</h2>

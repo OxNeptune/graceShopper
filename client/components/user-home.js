@@ -61,9 +61,9 @@ export class UserHome extends Component {
           <button className="user-submit-button" type="button">
             Payment Options
           </button>
-          <div>{this.state.showAdresses && <AddressList />}</div>
-          <div>{this.state.showOrders && <Orders />}</div>
         </div>
+        <div>{this.state.showAdresses && <AddressList />}</div>
+        <div>{this.state.showOrders && <Orders />}</div>
       </div>
     )
   }
