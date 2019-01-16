@@ -294,7 +294,7 @@ nav {
 .final-total {
   display: flex;
   margin-left: 100px;
-  margin-bottom: 50px;
+  margin-bottom: 20px;
 }
 
 .quantity-box {
@@ -357,4 +357,8 @@ nav {
 .user-submit-button:hover {
   color: white;
   background: #a9cbbb;
+}
+
+.cart-button {
+  margin-left: 100px;
 }
