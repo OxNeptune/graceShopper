@@ -10,6 +10,7 @@ const initialState = {
 const GOT_CART = 'GOT_CART'
 const ADDED_PLANT_TO_CART = 'ADDED_PLANT_TO_CART'
 const UPDATED_PLANT_IN_CART = 'UPDATED_PLANT_IN_CART'
+const DELETE_CART_ITEMS_IN_CART = 'DELETE_CART_ITEMS_IN_CART'
 
 export const gotCart = cart => ({
   type: GOT_CART,
@@ -24,6 +25,10 @@ export const addedPlantToCart = cartItem => ({
 export const updatedPlantInCart = cartItem => ({
   type: UPDATED_PLANT_IN_CART,
   cartItem
+})
+
+export const deleteCartItems = () => ({
+  type: DELETE_CART_ITEMS_IN_CART
 })
 
 export const updatePlantInCartThunk = plantInfo => async dispatch => {
@@ -53,6 +58,15 @@ export const getCartThunk = () => async dispatch => {
   }
 }
 
+export const deleteCartItemsThunk = () => async dispatch => {
+  try {
+    await axios.delete('/api/guestCart/')
+    dispatch(deleteCartItems())
+  } catch (err) {
+    console.error(err)
+  }
+}
+
 //reducer
 export default (state = initialState, action) => {
   switch (action.type) {
@@ -62,6 +76,8 @@ export default (state = initialState, action) => {
       return {...state, cart: action.cartItem}
     case UPDATED_PLANT_IN_CART:
       return {...state, cart: action.cartItem}
+    case DELETE_CART_ITEMS_IN_CART:
+      return {...state, cart: []}
     default:
       return state
   }

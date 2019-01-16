@@ -24,19 +24,13 @@ router.get('/', async (req, res, next) => {
   }
 })
 
-router.delete('/:id', async (req, res, next) => {
+router.delete('/', async (req, res, next) => {
   try {
-    // find all the plants associated with that users cart
-    const cartWithPlants = await Cart.findOne({
+    await CartItem.destroy({
       where: {
-        userId: req.session.userId
-      },
-      include: {
-        model: Plant
+        cartId: req.session.cartId
       }
     })
-    // const deletedPlant = await
-    // delete the plant with the id given to us through params
   } catch (error) {
     next(error)
   }
