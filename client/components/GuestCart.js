@@ -30,6 +30,9 @@ export default class GuestCart extends Component {
         ) : (
           <h3>You have no items in your cart!</h3>
         )}
+        <div className="final-total">
+          <h2>Your Total is ${total}!</h2>
+        </div>
       </div>
     )
   }

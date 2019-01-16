@@ -6,13 +6,20 @@ export class CartTwo extends Component {
 
     return (
       <div className="cart-wrapper">
-        <h2 id="cart-title">Your Cart</h2>
+        <h2 id="plant-list-title">Your Cart</h2>
         <div className="cart">
           {cart.map(plant => (
-            <div key={plant.plant.id}>
-              <img src={plant.plant.imageURI} />
-              {plant.plant.name} Each: ${plant.plant.price} x Quantity:{' '}
-              {plant.quantity} = Total: ${plant.total}
+            <div key={plant.plant.id} className="cart-card">
+              <div className="cart-img">
+                <img src={plant.plant.imageURI} />
+              </div>
+              <div className="cart-info">
+                <h1>{plant.plant.name}</h1>
+                <h4>
+                  Each: ${plant.plant.price} x Quantity: {plant.quantity}
+                </h4>
+                <h3>Total: ${plant.total}</h3>
+              </div>
             </div>
           ))}
         </div>

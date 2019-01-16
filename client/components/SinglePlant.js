@@ -109,13 +109,17 @@ export class SinglePlant extends Component {
           </div>
           <p>{plant.description}</p>
           <form onSubmit={this.handleSubmit}>
-            Qty:
-            <select name="quantity">
-              <option value="1">1</option>
-              <option value="2">2</option>
-              <option value="3">3</option>
-            </select>
-            <button type="submit">Add to Cart</button>
+            <div className="quantity-box">
+              <h4>Qty:</h4>
+              <select name="quantity">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+              </select>
+            </div>
+            <button className="submit-button" type="submit">
+              Add to Cart
+            </button>
           </form>
         </div>
       </div>
