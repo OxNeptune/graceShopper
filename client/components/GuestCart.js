@@ -22,17 +22,20 @@ export default class GuestCart extends Component {
         {cart.length ? (
           <div>
             <CartTwo cart={cart} />
-            <h2>Your Total is ${total}!</h2>
-            <Link to="/checkout" component={Checkout}>
-              <button type="submit">Checkout</button>
-            </Link>
+            <div className="final-total">
+              <h2>Your Total is ${total}!</h2>
+            </div>
+            <div className="cart-button">
+              <Link to="/checkout" component={Checkout}>
+                <button className="submit-button" type="submit">
+                  Checkout
+                </button>
+              </Link>
+            </div>
           </div>
         ) : (
           <h3>You have no items in your cart!</h3>
         )}
-        <div className="final-total">
-          <h2>Your Total is ${total}!</h2>
-        </div>
       </div>
     )
   }
